@@ -13,4 +13,4 @@ App desenvolvido  com FrameWork
 
 ## Licenças 
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+ Laravel é um  framework  open-sourced software com licença  [MIT license](https://opensource.org/licenses/MIT).

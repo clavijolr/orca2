@@ -12,7 +12,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable , HasProfilePhoto, TwoFactorAuthenticatable ;
+    use HasApiTokens, HasFactory, Notifiable , HasProfilePhoto  ;
 
     /**
      * The attributes that are mass assignable.

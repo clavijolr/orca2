@@ -11,10 +11,19 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
+use Laravel\Jetstream\HasProfilePhoto;
+use Laravel\Fortify\TwoFactorAuthenticatable;
+
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
+    use SoftDeletes;
+    use HasProfilePhoto;
+    use TwoFactorAuthenticatable;
+
 
     /**
      * The attributes that are mass assignable.
@@ -25,7 +34,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'image'
+        'image',
+        'facebook_id'
     ];
 
     /**
@@ -36,6 +46,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'two_factor_recovery_codes',
+        'two_factor_secret',        
     ];
 
     /**
@@ -45,9 +57,11 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'id' => 'string',
+        
     ];
-
+    protected $appends = [
+        'profile_photo_url',
+    ];
     public $incrementing = false;
 
     protected function createdAt(): Attribute
